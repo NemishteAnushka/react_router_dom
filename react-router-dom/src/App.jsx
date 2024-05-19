@@ -7,16 +7,17 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Home, About, Contact, Posts, Error } from "./pages";
+import RootElement from "./layout/RootElement";
 
 //step 2 : create routes
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/posts" element={<Posts />} />
+    <Route path="/" element={<RootElement />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="posts" element={<Posts />} />
       {/* error */}
       <Route path="*" element={<Error />} />
     </Route>
