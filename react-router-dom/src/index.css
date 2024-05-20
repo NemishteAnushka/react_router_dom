@@ -5,7 +5,14 @@ a{
 ul{
     list-style-type: none;
 }
-a:hover{
+/* a:hover{
+    text-decoration: underline;
+    color: blue;
+} */
+.active{
+    color : red
+}
+.activeNav{
     text-decoration: underline;
     color: blue;
 }
