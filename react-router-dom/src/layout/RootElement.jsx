@@ -58,6 +58,7 @@ function RootElement() {
           </NavLink>
         </ul>
       </nav>
+      <hr />
       <main>
         <Outlet />
       </main>
