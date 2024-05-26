@@ -10,6 +10,7 @@ import { Home, About, Contact, Posts, Error, GetSinglePost } from "./pages";
 import RootElement from "./layout/RootElement";
 import RequiredLoginAuth from "./components/RequiredLoginAuth";
 import Login from "./pages/Login";
+import AuthContextProvider from "./components/AuthContextProvider";
 
 //step 2 : create routes
 
@@ -46,9 +47,9 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <div>
+    <AuthContextProvider>
       <RouterProvider router={router} />
-    </div>
+    </AuthContextProvider>
   );
 }
 

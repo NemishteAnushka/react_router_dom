@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { useAuth } from "../components/AuthContextProvider";
 
 function RootElement() {
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
   return (
     <div>
       <h1>Root Element</h1>
@@ -56,8 +58,28 @@ function RootElement() {
           >
             <li>Posts</li>
           </NavLink>
+          {!isLoggedIn && (
+            <NavLink
+              to={"/login"}
+              className={(obj) => {
+                return obj.isActive ? "activeNav" : null;
+              }}
+            >
+              <li>Login</li>
+            </NavLink>
+          )}
         </ul>
       </nav>
+      {isLoggedIn && (
+        <button
+          onClick={() => {
+            setIsLoggedIn(false);
+          }}
+        >
+          Logout
+        </button>
+      )}
+
       <hr />
       <main>
         <Outlet />
