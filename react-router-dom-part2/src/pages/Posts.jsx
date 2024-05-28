@@ -1,7 +1,6 @@
 import React from "react";
 import Post from "./Post";
 import { useLoaderData } from "react-router-dom";
-const endpoints = "https://jsonplaceholder.typicode.com/posts";
 
 //in normal funtion
 //component mount --> then fetchData
@@ -16,8 +15,19 @@ const endpoints = "https://jsonplaceholder.typicode.com/posts";
 // step 1 provide loader function to route
 //step 2 get data in component using useLoaderData
 
+//handling error in loader functions
+
+//step 1 provide errorElement to the route for example <Error/>
+//step 2 use  useRouteError hook in <Error/> Element
+//step 3 if you want to provide with message you can throw new error with message
+//step 4 message will be store in useRouteError hook
+
 export async function fetchData() {
+  const endpoints = "https://jsonplaceholder.typicode.com/posts";
   const response = await fetch(endpoints);
+  if (!response.ok) {
+    throw new Error("Something Went Wrong");
+  }
   const resdata = await response.json();
   return resdata;
 }

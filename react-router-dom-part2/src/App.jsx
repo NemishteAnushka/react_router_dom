@@ -12,6 +12,7 @@ import RequiredLoginAuth from "./components/RequiredLoginAuth";
 import Login from "./pages/Login";
 import AuthContextProvider from "./components/AuthContextProvider";
 import { fetchData } from "./pages/Posts";
+import { loader } from "./pages/GetSinglePost";
 
 //step 2 : create routes
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
       <Route
         path="posts"
         loader={fetchData}
+        errorElement={<Error />}
         element={
           <RequiredLoginAuth>
             <Posts />
@@ -41,6 +43,8 @@ const router = createBrowserRouter(
       />
       <Route
         path="posts/:id"
+        loader={loader}
+        errorElement={<Error />}
         element={
           <RequiredLoginAuth>
             <GetSinglePost />
