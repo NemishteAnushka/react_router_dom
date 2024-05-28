@@ -1,7 +1,10 @@
-import { useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 
-export async function loader({ params }) {
+export async function loader({ params }, { isLoggedIn }) {
   const url = "https://jsonplaceholder.typicode.com/posts";
+  if (!isLoggedIn) {
+    return redirect("/login");
+  }
   const res = await fetch(`${url}/${params.id}`);
   //handle error
   if (!res.ok) {

@@ -1,6 +1,6 @@
 import React from "react";
 import Post from "./Post";
-import { useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 
 //in normal funtion
 //component mount --> then fetchData
@@ -22,8 +22,12 @@ import { useLoaderData } from "react-router-dom";
 //step 3 if you want to provide with message you can throw new error with message
 //step 4 message will be store in useRouteError hook
 
-export async function fetchData() {
+export async function fetchData(args, { isLoggedIn }) {
+  if (!isLoggedIn) {
+    return redirect("/login");
+  }
   const endpoints = "https://jsonplaceholder.typicode.com/posts";
+
   const response = await fetch(endpoints);
   if (!response.ok) {
     throw new Error("Something Went Wrong");
